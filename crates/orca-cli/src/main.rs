@@ -430,6 +430,21 @@ async fn run_tui(
                                 break;
                             }
 
+                            // Handle /clear in TUI (no interactive prompt, just clear)
+                            if input.trim() == "/clear" {
+                                agent.clear_conversation();
+                                app.push_message(orca_tui::app::ChatMessage::System("Conversation cleared.".to_string()));
+                                terminal.draw(|f| render(f, &app))?;
+                                continue;
+                            }
+
+                            // Handle all other in-chat commands
+                            if let Some(output) = crate::commands::CommandHandler::try_handle(&input, &mut agent) {
+                                app.push_message(orca_tui::app::ChatMessage::System(output));
+                                terminal.draw(|f| render(f, &app))?;
+                                continue;
+                            }
+
                             app.push_message(ChatMessage::User(input.clone()));
                             app.is_processing = true;
                             app.status = "Thinking...".to_string();
