@@ -226,37 +226,159 @@
       <!-- In-Chat Commands -->
       <section id="in-chat" class="doc-section">
         <h2>In-Chat Commands</h2>
-        <p>During an interactive session, these commands provide meta-operations:</p>
+        <p>During an interactive session, these slash commands are available. Commands are case-sensitive.</p>
+
+        <h3>Information Queries</h3>
         <table class="doc-table">
           <thead>
             <tr>
               <th>Command</th>
+              <th>Args</th>
               <th>Description</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>/checkpoint</td>
-              <td>Create a manual checkpoint</td>
+              <td><code>/help</code></td>
+              <td></td>
+              <td>List all commands with descriptions</td>
             </tr>
             <tr>
-              <td>/cost</td>
+              <td><code>/tools</code></td>
+              <td></td>
+              <td>Show registered tools with name and description</td>
+            </tr>
+            <tr>
+              <td><code>/model</code></td>
+              <td></td>
+              <td>Show current provider, model, and base URL</td>
+            </tr>
+            <tr>
+              <td><code>/context</code></td>
+              <td></td>
+              <td>Show context window usage, compression threshold, and iteration stats</td>
+            </tr>
+            <tr>
+              <td><code>/cost</code></td>
+              <td></td>
               <td>Show accumulated cost and iteration count</td>
             </tr>
             <tr>
-              <td>quit</td>
-              <td>Exit the session</td>
+              <td><code>/history</code></td>
+              <td>[n]</td>
+              <td>Show last <em>n</em> messages (default: 10)</td>
             </tr>
             <tr>
-              <td>exit</td>
-              <td>Alias for quit</td>
-            </tr>
-            <tr>
-              <td>q</td>
-              <td>Alias for quit</td>
+              <td><code>/system</code></td>
+              <td></td>
+              <td>Print current system prompt</td>
             </tr>
           </tbody>
         </table>
+
+        <h3>Session Management</h3>
+        <table class="doc-table">
+          <thead>
+            <tr>
+              <th>Command</th>
+              <th>Args</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>/checkpoint</code></td>
+              <td></td>
+              <td>Create a manual checkpoint</td>
+            </tr>
+            <tr>
+              <td><code>/clear</code></td>
+              <td></td>
+              <td>Clear conversation history (requires confirmation)</td>
+            </tr>
+            <tr>
+              <td><code>/save</code></td>
+              <td>[file]</td>
+              <td>Export conversation to JSON. Default: <code>.orca-sessions/&lt;id&gt;.json</code></td>
+            </tr>
+            <tr>
+              <td><code>/load</code></td>
+              <td>&lt;file&gt;</td>
+              <td>Load conversation from a JSON file</td>
+            </tr>
+            <tr>
+              <td><code>/undo</code></td>
+              <td></td>
+              <td>Remove the last user message and its response</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>Conversation Control</h3>
+        <table class="doc-table">
+          <thead>
+            <tr>
+              <th>Command</th>
+              <th>Args</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>/compact</code></td>
+              <td></td>
+              <td>Force context compression and report token savings</td>
+            </tr>
+            <tr>
+              <td><code>/system</code></td>
+              <td>&lt;text&gt;</td>
+              <td>Update the system prompt</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>Exit</h3>
+        <table class="doc-table">
+          <thead>
+            <tr>
+              <th>Command</th>
+              <th>Args</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>quit</code> / <code>exit</code> / <code>q</code></td>
+              <td></td>
+              <td>Exit the session</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>Examples</h3>
+        <div class="code-block">
+          <div class="dots">
+            <span class="red"></span>
+            <span class="amber"></span>
+            <span class="green"></span>
+          </div>
+          <div class="lines">
+            <div class="line"># Show all available commands</div>
+            <div class="line">> /help</div>
+            <div class="line"></div>
+            <div class="line"># Show last 20 messages</div>
+            <div class="line">> /history 20</div>
+            <div class="line"></div>
+            <div class="line"># Save session to a custom file</div>
+            <div class="line">> /save my-session.json</div>
+            <div class="line"></div>
+            <div class="line"># Force context compression</div>
+            <div class="line">> /compact</div>
+            <div class="line"></div>
+            <div class="line"># Update system prompt</div>
+            <div class="line">> /system You are a Rust expert. Always use idiomatic error handling.</div>
+          </div>
+        </div>
       </section>
     </main>
   </div>
