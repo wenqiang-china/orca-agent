@@ -1,0 +1,16 @@
+[package]
+name = "orca-openai"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+orca-utils = { path = "../orca-utils" }
+orca-providers = { path = "../orca-providers" }
+tokio.workspace = true
+async-trait.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+reqwest.workspace = true
+futures.workspace = true
+anyhow.workspace = true
+tracing.workspace = true

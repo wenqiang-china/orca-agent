@@ -1,0 +1,15 @@
+[package]
+name = "orca-events"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+orca-utils = { path = "../orca-utils" }
+tokio.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+chrono.workspace = true
+uuid.workspace = true
+rusqlite.workspace = true
+anyhow.workspace = true
+tracing.workspace = true

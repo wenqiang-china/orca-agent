@@ -1,0 +1,32 @@
+[[bin]]
+name = "orca"
+path = "src/main.rs"
+
+[package]
+name = "orca-cli"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+orca-core = { path = "../orca-core" }
+orca-config = { path = "../orca-config" }
+orca-utils = { path = "../orca-utils" }
+orca-tools = { path = "../orca-tools" }
+orca-deepseek = { path = "../orca-deepseek" }
+orca-anthropic = { path = "../orca-anthropic" }
+orca-openai = { path = "../orca-openai" }
+orca-tui = { path = "../orca-tui" }
+orca-providers = { path = "../orca-providers" }
+orca-sandbox = { path = "../orca-sandbox" }
+orca-checkpoint = { path = "../orca-checkpoint" }
+tokio.workspace = true
+clap.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+anyhow.workspace = true
+tracing.workspace = true
+tracing-subscriber.workspace = true
+dirs.workspace = true
+toml.workspace = true
+crossterm.workspace = true
+ratatui.workspace = true

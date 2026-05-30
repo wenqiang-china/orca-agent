@@ -1,0 +1,10 @@
+[package]
+name = "orca-tui"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+orca-utils = { path = "../orca-utils" }
+ratatui.workspace = true
+crossterm.workspace = true
+anyhow.workspace = true
