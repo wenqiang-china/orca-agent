@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CLI — Orca Agent</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">
+      <span class="gradient">Orca</span>
+      <span class="light">Agent</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Docs</a>
+      <a href="quickstart.html">Quick Start</a>
+      <a href="providers.html">Providers</a>
+      <a href="tools.html">Tools</a>
+      <a href="architecture.html">Architecture</a>
+      <a href="cli.html" class="active">CLI</a>
+      <a href="config.html">Config</a>
+    </div>
+    <div class="nav-right">
+      <span class="nav-version">v0.1.0</span>
+      <a href="https://github.com" class="nav-github">
+        <svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      </a>
+    </div>
+  </nav>
+
+  <div class="nav-mobile-menu">
+    <a href="index.html">Docs</a>
+    <a href="quickstart.html">Quick Start</a>
+    <a href="providers.html">Providers</a>
+    <a href="tools.html">Tools</a>
+    <a href="architecture.html">Architecture</a>
+    <a href="cli.html" class="active">CLI</a>
+    <a href="config.html">Config</a>
+  </div>
+
+  <div class="doc-layout">
+    <aside class="sidebar">
+      <div class="sidebar-heading">On this page</div>
+      <nav class="sidebar-section">
+        <a href="#overview" class="sidebar-link">Overview</a>
+        <a href="#flags" class="sidebar-link">Global Flags</a>
+        <a href="#chat" class="sidebar-link">chat</a>
+        <a href="#config" class="sidebar-link">config</a>
+        <a href="#models" class="sidebar-link">models</a>
+        <a href="#resume" class="sidebar-link">resume</a>
+        <a href="#in-chat" class="sidebar-link">In-Chat Commands</a>
+      </nav>
+    </aside>
+
+    <main class="doc-content">
+      <!-- Breadcrumb -->
+      <div class="breadcrumb"><span>Docs</span> / CLI</div>
+
+      <!-- Page Title -->
+      <h1 class="page-title">CLI</h1>
+      <p class="doc-subtitle">Command-line interface reference for Orca Agent.</p>
+
+      <!-- Overview -->
+      <section id="overview" class="doc-section">
+        <h2>Overview</h2>
+        <p>Orca Agent exposes its functionality through a CLI with multiple commands. The general syntax is: <code>orca &lt;command&gt; [flags]</code>.</p>
+      </section>
+
+      <!-- Global Flags -->
+      <section id="flags" class="doc-section">
+        <h2>Global Flags</h2>
+        <table class="doc-table">
+          <thead>
+            <tr>
+              <th>Flag</th>
+              <th>Short</th>
+              <th>Description</th>
+              <th>Default</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>--workdir</td>
+              <td>-w</td>
+              <td>Working directory</td>
+              <td>.</td>
+            </tr>
+            <tr>
+              <td>--model</td>
+              <td>-m</td>
+              <td>Model to use</td>
+              <td>(from config)</td>
+            </tr>
+            <tr>
+              <td>--provider</td>
+              <td>-p</td>
+              <td>Provider to use</td>
+              <td>(from config)</td>
+            </tr>
+            <tr>
+              <td>--verbose</td>
+              <td>-v</td>
+              <td>Verbose logging</td>
+              <td>false</td>
+            </tr>
+            <tr>
+              <td>--prompt</td>
+              <td></td>
+              <td>Initial prompt (non-interactive)</td>
+              <td>(none)</td>
+            </tr>
+            <tr>
+              <td>--tui</td>
+              <td></td>
+              <td>Use TUI mode</td>
+              <td>false</td>
+            </tr>
+            <tr>
+              <td>--base-url</td>
+              <td></td>
+              <td>Custom API base URL</td>
+              <td>(from config)</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- chat -->
+      <section id="chat" class="doc-section">
+        <h2>chat</h2>
+        <p>Start an interactive chat session. This is the default command if none is specified.</p>
+        <div class="code-block">
+          <div class="dots">
+            <span class="red"></span>
+            <span class="amber"></span>
+            <span class="green"></span>
+          </div>
+          <div class="lines">
+            <div class="line"># Interactive session</div>
+            <div class="line">$ orca chat</div>
+            <div class="line"></div>
+            <div class="line"># TUI mode</div>
+            <div class="line">$ orca chat --tui</div>
+            <div class="line"></div>
+            <div class="line"># One-shot query</div>
+            <div class="line">$ orca chat -p "explain this code"</div>
+            <div class="line"></div>
+            <div class="line"># With custom provider</div>
+            <div class="line">$ orca chat --provider openai --model gpt-4o --base-url http://localhost:11434/v1</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- config -->
+      <section id="config" class="doc-section">
+        <h2>config</h2>
+        <p>Manage configuration. Supports show, set, and reset operations.</p>
+        <div class="code-block">
+          <div class="dots">
+            <span class="red"></span>
+            <span class="amber"></span>
+            <span class="green"></span>
+          </div>
+          <div class="lines">
+            <div class="line"># Show current config</div>
+            <div class="line">$ orca config show</div>
+            <div class="line"></div>
+            <div class="line"># Set a value</div>
+            <div class="line">$ orca config set provider openai</div>
+            <div class="line"></div>
+            <div class="line"># Reset to defaults</div>
+            <div class="line">$ orca config reset</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- models -->
+      <section id="models" class="doc-section">
+        <h2>models</h2>
+        <p>List all available models across configured providers.</p>
+        <div class="code-block">
+          <div class="dots">
+            <span class="red"></span>
+            <span class="amber"></span>
+            <span class="green"></span>
+          </div>
+          <div class="lines">
+            <div class="line">$ orca models</div>
+            <div class="line">Available models:</div>
+            <div class="line">  Provider: deepseek</div>
+            <div class="line">    - deepseek-chat (default)</div>
+            <div class="line">    - deepseek-reasoner</div>
+            <div class="line">  Provider: anthropic</div>
+            <div class="line">    - claude-sonnet-4-20250514</div>
+            <div class="line">    - claude-opus-4-20250514</div>
+            <div class="line">  Provider: openai</div>
+            <div class="line">    - gpt-4o</div>
+            <div class="line">    - gpt-4o-mini</div>
+            <div class="line">    - gpt-4.1</div>
+            <div class="line">    - o1</div>
+            <div class="line">    - o3</div>
+            <div class="line">    - o3-mini</div>
+            <div class="line">  Provider: custom (OpenAI-compatible)</div>
+            <div class="line">    - any model via base_url in config</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- resume -->
+      <section id="resume" class="doc-section">
+        <h2>resume</h2>
+        <p>Resume a session from a saved checkpoint. Checkpoints preserve the full agent state including message history and tool results.</p>
+        <div class="code-block">
+          <div class="dots">
+            <span class="red"></span>
+            <span class="amber"></span>
+            <span class="green"></span>
+          </div>
+          <div class="lines">
+            <div class="line">$ orca resume &lt;checkpoint-id&gt;</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- In-Chat Commands -->
+      <section id="in-chat" class="doc-section">
+        <h2>In-Chat Commands</h2>
+        <p>During an interactive session, these commands provide meta-operations:</p>
+        <table class="doc-table">
+          <thead>
+            <tr>
+              <th>Command</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>/checkpoint</td>
+              <td>Create a manual checkpoint</td>
+            </tr>
+            <tr>
+              <td>/cost</td>
+              <td>Show accumulated cost and iteration count</td>
+            </tr>
+            <tr>
+              <td>quit</td>
+              <td>Exit the session</td>
+            </tr>
+            <tr>
+              <td>exit</td>
+              <td>Alias for quit</td>
+            </tr>
+            <tr>
+              <td>q</td>
+              <td>Alias for quit</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </main>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-brand">
+      <span class="gradient">Orca Agent</span>
+      <span> · MIT License</span>
+    </div>
+    <div class="footer-links">
+      <a href="https://github.com">GitHub</a>
+      <a href="index.html">Docs</a>
+      <a href="https://github.com">Releases</a>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
