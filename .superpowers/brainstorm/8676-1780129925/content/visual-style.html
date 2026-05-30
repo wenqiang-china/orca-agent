@@ -1,0 +1,87 @@
+<h2>Visual Style Direction</h2>
+<p class="subtitle">Which overall feel suits Orca Agent better?</p>
+
+<div class="cards">
+  <div class="card" data-choice="a" onclick="toggleSelect(this)">
+    <div class="card-image" style="background: linear-gradient(135deg, #0d0d0d 0%, #1a1a2e 100%); padding: 24px; min-height: 280px; color: white; font-family: -apple-system, sans-serif;">
+      <div style="font-size: 11px; opacity: 0.4; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px;">Orca Agent</div>
+      <div style="font-size: 28px; font-weight: 700; line-height: 1.3; margin-bottom: 12px;">
+        <span style="background: linear-gradient(90deg, #7c3aed, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">AI-Powered</span><br>Coding Agent
+      </div>
+      <div style="font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.6; margin-bottom: 20px;">Multi-provider support with OS-level sandboxing and semantic capacity control.</div>
+      <div style="display: flex; gap: 8px;">
+        <span style="background: #7c3aed; padding: 6px 16px; border-radius: 6px; font-size: 12px;">Get Started</span>
+        <span style="border: 1px solid rgba(255,255,255,0.2); padding: 6px 16px; border-radius: 6px; font-size: 12px; color: rgba(255,255,255,0.6);">GitHub</span>
+      </div>
+      <div style="margin-top: 24px; background: rgba(255,255,255,0.05); border-radius: 8px; padding: 12px; font-family: monospace; font-size: 11px; color: rgba(255,255,255,0.4);">
+        <span style="color: #7c3aed;">$</span> orca chat --provider deepseek<br>
+        <span style="color: #06b6d4;">&gt;</span> <span style="color: rgba(255,255,255,0.6);">Refactor the auth module...</span>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>A. OpenAI Style</h3>
+      <p><strong>Dark theme</strong> — gradient accents, monospace code feel, tech-forward. Emphasizes power and modernity.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="b" onclick="toggleSelect(this)">
+    <div class="card-image" style="background: #faf8f5; padding: 24px; min-height: 280px; color: #2d2a26; font-family: 'Georgia', serif;">
+      <div style="font-size: 11px; opacity: 0.5; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px; font-family: sans-serif;">Orca Agent</div>
+      <div style="font-size: 28px; font-weight: 400; line-height: 1.3; margin-bottom: 12px; color: #1a1714;">
+        A thoughtful approach to<br><em style="font-style: italic; color: #8b6f47;">AI-assisted development</em>
+      </div>
+      <div style="font-size: 13px; color: #6b6560; line-height: 1.8; margin-bottom: 20px; font-family: sans-serif;">
+        Built with safety, context awareness, and reliability at its core. Designed for developers who care about craft.
+      </div>
+      <div style="display: flex; gap: 8px; font-family: sans-serif;">
+        <span style="background: #2d2a26; color: #faf8f5; padding: 6px 16px; border-radius: 6px; font-size: 12px;">Read the Docs</span>
+        <span style="border: 1px solid #d4cfc8; padding: 6px 16px; border-radius: 6px; font-size: 12px; color: #6b6560;">View on GitHub</span>
+      </div>
+      <div style="margin-top: 24px; border-top: 1px solid #e8e4de; padding-top: 16px; font-family: sans-serif; font-size: 12px; color: #8b8580; display: flex; gap: 24px;">
+        <span>Multi-provider</span>
+        <span>Sandboxed</span>
+        <span>Context-aware</span>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>B. Anthropic Style</h3>
+      <p><strong>Light warm theme</strong> — serif typography, academic elegance, calm and trustworthy. Emphasizes reliability and craft.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="c" onclick="toggleSelect(this)">
+    <div class="card-image" style="background: #0f0f11; padding: 24px; min-height: 280px; color: white; font-family: -apple-system, sans-serif;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+        <div style="font-size: 11px; opacity: 0.5; letter-spacing: 2px; text-transform: uppercase;">Orca Agent</div>
+        <div style="display: flex; gap: 16px; font-size: 11px; opacity: 0.4;">
+          <span>Docs</span><span>GitHub</span><span>v0.1.0</span>
+        </div>
+      </div>
+      <div style="font-size: 28px; font-weight: 600; line-height: 1.3; margin-bottom: 12px; letter-spacing: -0.5px;">
+        Build faster with<br><span style="color: #a78bfa;">intelligent agents</span>
+      </div>
+      <div style="font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.6; margin-bottom: 20px; max-width: 360px;">Multi-provider AI coding agent with sandboxing, context management, and checkpoint recovery.</div>
+      <div style="display: flex; gap: 8px;">
+        <span style="background: white; color: black; padding: 6px 16px; border-radius: 8px; font-size: 12px; font-weight: 500;">Get Started →</span>
+      </div>
+      <div style="margin-top: 20px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px;">
+        <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 10px; font-size: 11px;">
+          <div style="color: #a78bfa; margin-bottom: 4px; font-weight: 600;">3 Providers</div>
+          <div style="color: rgba(255,255,255,0.35);">DeepSeek, Claude, OpenAI</div>
+        </div>
+        <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 10px; font-size: 11px;">
+          <div style="color: #34d399; margin-bottom: 4px; font-weight: 600;">8 Tools</div>
+          <div style="color: rgba(255,255,255,0.35);">Files, Shell, Git, Web</div>
+        </div>
+        <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 10px; font-size: 11px;">
+          <div style="color: #60a5fa; margin-bottom: 4px; font-weight: 600;">65 Tests</div>
+          <div style="color: rgba(255,255,255,0.35);">Fully verified</div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>C. Hybrid (Vercel/Linear)</h3>
+      <p><strong>Dark minimal</strong> — clean grid cards, sharp typography, product-focused. Modern SaaS feel with information density.</p>
+    </div>
+  </div>
+</div>

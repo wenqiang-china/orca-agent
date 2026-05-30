@@ -1,0 +1,117 @@
+<h2>Documentation Page Layout</h2>
+<p class="subtitle">Common layout for Quick Start, Providers, Tools, Architecture, CLI, Config pages</p>
+
+<div class="mockup">
+  <div class="mockup-header">Desktop Doc Page (≥1024px)</div>
+  <div class="mockup-body" style="background: #0d0d0d; padding: 0;">
+    <div style="display: flex; min-height: 500px; font-family: -apple-system, sans-serif;">
+      <!-- Left Sidebar -->
+      <div style="width: 280px; border-right: 1px solid rgba(255,255,255,0.06); padding: 24px 0; background: rgba(13,13,13,0.5);">
+        <div style="padding: 0 24px 16px; font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: rgba(255,255,255,0.35);">On this page</div>
+        <div style="display: flex; flex-direction: column; gap: 1px; padding: 0 16px;">
+          <span style="padding: 8px 8px 8px 16px; font-size: 13px; color: rgba(255,255,255,0.6); border-radius: 6px; border-left: 2px solid #7c3aed; background: rgba(124,58,237,0.08);">Overview</span>
+          <span style="padding: 8px 8px 8px 16px; font-size: 13px; color: rgba(255,255,255,0.4);">Installation</span>
+          <span style="padding: 8px 8px 8px 16px; font-size: 13px; color: rgba(255,255,255,0.4);">Configuration</span>
+          <span style="padding: 8px 8px 8px 16px; font-size: 13px; color: rgba(255,255,255,0.4);">First Run</span>
+          <div style="padding: 0 8px 8px 16px; font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: rgba(255,255,255,0.25); margin-top: 8px;">Reference</div>
+          <span style="padding: 8px 8px 8px 16px; font-size: 13px; color: rgba(255,255,255,0.4);">API Keys</span>
+          <span style="padding: 8px 8px 8px 16px; font-size: 13px; color: rgba(255,255,255,0.4);">Models</span>
+        </div>
+      </div>
+
+      <!-- Main Content -->
+      <div style="flex: 1; padding: 48px 64px;">
+        <div style="max-width: 720px;">
+          <!-- Breadcrumb -->
+          <div style="font-size: 12px; color: rgba(255,255,255,0.35); margin-bottom: 16px;">
+            <span style="color: rgba(255,255,255,0.4);">Docs</span>
+            <span style="margin: 0 6px;">/</span>
+            <span>Quick Start</span>
+          </div>
+
+          <!-- Title -->
+          <h1 style="font-size: 36px; font-weight: 700; letter-spacing: -1px; margin-bottom: 16px;">
+            <span style="background: linear-gradient(135deg, #7c3aed, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Quick Start</span>
+          </h1>
+          <p style="font-size: 16px; color: rgba(255,255,255,0.5); line-height: 1.7; margin-bottom: 32px;">
+            Get Orca Agent up and running in 5 minutes. Build from source, configure your provider, and start coding.
+          </p>
+
+          <!-- Section -->
+          <div id="overview" style="padding: 20px 0 8px;">
+            <h2 style="font-size: 24px; font-weight: 600; color: rgba(255,255,255,0.9); letter-spacing: -0.5px; margin-bottom: 12px;">Overview</h2>
+            <p style="font-size: 15px; color: rgba(255,255,255,0.6); line-height: 1.7;">
+              Orca Agent is a Rust-based AI coding agent with OS-level sandboxing, multi-provider support, and checkpoint recovery. This guide will walk you through installation and first use.
+            </p>
+          </div>
+
+          <!-- Code Block -->
+          <div style="background: #1a1a2e; border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 20px; margin: 24px 0; font-family: 'SF Mono', 'Fira Code', monospace; font-size: 13px;">
+            <div style="display: flex; gap: 6px; margin-bottom: 12px;">
+              <div style="width: 10px; height: 10px; border-radius: 50%; background: #ef4444;"></div>
+              <div style="width: 10px; height: 10px; border-radius: 50%; background: #f59e0b;"></div>
+              <div style="width: 10px; height: 10px; border-radius: 50%; background: #10b981;"></div>
+            </div>
+            <div style="color: rgba(255,255,255,0.6);"><span style="color: #7c3aed;">$</span> cargo build --release</div>
+            <div style="color: rgba(255,255,255,0.3); margin-top: 8px;"># Builds to target/release/orca-agent</div>
+          </div>
+
+          <!-- Info Box -->
+          <div style="background: rgba(6,182,212,0.08); border-left: 3px solid #06b6d4; padding: 16px 20px; border-radius: 0 8px 8px 0; margin: 24px 0;">
+            <div style="font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.85); margin-bottom: 6px;">Tip</div>
+            <div style="font-size: 14px; color: rgba(255,255,255,0.6); line-height: 1.6;">
+              Add <code style="background: rgba(255,255,255,0.08); padding: 2px 6px; border-radius: 4px; font-size: 12px; color: #a78bfa;">--profile release</code> to skip the debug build and compile faster for production.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="mockup" style="margin-top: 16px;">
+  <div class="mockup-header">Mobile Doc Page (<1024px)</div>
+  <div class="mockup-body" style="background: #0d0d0d; padding: 0; max-width: 480px;">
+    <div style="padding: 24px 20px; font-family: -apple-system, sans-serif;">
+      <!-- Mobile Breadcrumb -->
+      <div style="font-size: 11px; color: rgba(255,255,255,0.35); margin-bottom: 12px;">
+        <span style="color: rgba(255,255,255,0.4);">Docs</span>
+        <span style="margin: 0 4px;">/</span>
+        <span>Quick Start</span>
+      </div>
+
+      <!-- Mobile Title -->
+      <h1 style="font-size: 28px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 12px;">
+        <span style="background: linear-gradient(135deg, #7c3aed, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Quick Start</span>
+      </h1>
+      <p style="font-size: 14px; color: rgba(255,255,255,0.5); line-height: 1.6; margin-bottom: 24px;">
+        Get Orca Agent up and running in 5 minutes. Build from source, configure your provider, and start coding.
+      </p>
+
+      <!-- Mobile Section -->
+      <div style="padding: 16px 0 0;">
+        <h2 style="font-size: 20px; font-weight: 600; color: rgba(255,255,255,0.9); margin-bottom: 10px;">Overview</h2>
+        <p style="font-size: 14px; color: rgba(255,255,255,0.6); line-height: 1.6;">
+          Orca Agent is a Rust-based AI coding agent with OS-level sandboxing, multi-provider support, and checkpoint recovery.
+        </p>
+      </div>
+
+      <!-- Mobile Code Block -->
+      <div style="background: #1a1a2e; border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 12px; margin: 16px 0; font-family: 'SF Mono', 'Fira Code', monospace; font-size: 11px; overflow-x: auto;">
+        <div style="color: rgba(255,255,255,0.6); white-space: nowrap;"><span style="color: #7c3aed;">$</span> cargo build --release</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div style="margin-top: 16px; padding: 16px; background: rgba(124,58,237,0.08); border: 1px solid rgba(124,58,237,0.2); border-radius: 8px; font-size: 13px; color: rgba(255,255,255,0.6);">
+  <strong style="color: #a78bfa;">Key behaviors:</strong>
+  <ul style="margin: 8px 0 0 16px; line-height: 1.8;">
+    <li>Desktop: Fixed left sidebar (280px), scrollable content area</li>
+    <li>Mobile: Single-column layout, sidebar hidden (or collapsible)</li>
+    <li>Active section highlighted with purple accent</li>
+    <li>Code blocks use monospace font with Mac-style window controls</li>
+    <li>Info boxes with colored left borders for tips/warnings</li>
+    <li>Breadcrumb navigation for context</li>
+  </ul>
+</div>

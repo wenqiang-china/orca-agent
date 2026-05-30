@@ -1,3 +1,5 @@
+mod commands;
+
 use anyhow::Result;
 use clap::{Parser, Subcommand};
 use orca_config::OrcaConfig;
@@ -225,15 +227,24 @@ async fn run_chat(
             break;
         }
 
-        if input == "/checkpoint" {
-            agent.create_checkpoint("manual checkpoint")?;
-            println!("Checkpoint created.");
+        // Handle /clear with confirmation prompt
+        if input == "/clear" {
+            print!("Clear conversation? This will remove all messages. (y/n): ");
+            io::stdout().flush()?;
+            let mut confirm = String::new();
+            io::stdin().read_line(&mut confirm)?;
+            if confirm.trim() == "y" || confirm.trim() == "Y" {
+                agent.clear_conversation();
+                println!("Conversation cleared.");
+            } else {
+                println!("Cancelled.");
+            }
             continue;
         }
 
-        if input == "/cost" {
-            println!("Cost so far: ${:.4}", agent.total_cost());
-            println!("Iterations: {}", agent.iteration_count());
+        // Handle all other in-chat commands
+        if let Some(output) = crate::commands::CommandHandler::try_handle(input, &mut agent) {
+            println!("{}", output);
             continue;
         }
 
@@ -608,6 +619,27 @@ async fn run_resume(
                     }
                     println!("Goodbye!");
                     break;
+                }
+
+                // Handle /clear with confirmation prompt
+                if input == "/clear" {
+                    print!("Clear conversation? This will remove all messages. (y/n): ");
+                    io::stdout().flush()?;
+                    let mut confirm = String::new();
+                    io::stdin().read_line(&mut confirm)?;
+                    if confirm.trim() == "y" || confirm.trim() == "Y" {
+                        agent.clear_conversation();
+                        println!("Conversation cleared.");
+                    } else {
+                        println!("Cancelled.");
+                    }
+                    continue;
+                }
+
+                // Handle all other in-chat commands
+                if let Some(output) = crate::commands::CommandHandler::try_handle(input, &mut agent) {
+                    println!("{}", output);
+                    continue;
                 }
 
                 process_input(&mut agent, &executor, input).await?;
