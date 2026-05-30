@@ -414,6 +414,36 @@ impl Agent {
         }));
     }
 
+    /// Get access to the tool executor for registry inspection
+    pub fn tool_executor(&self) -> &ToolExecutor {
+        &self.tool_executor
+    }
+
+    /// Force context compression, returns (messages_before, messages_after)
+    pub fn compress_context(&mut self) -> (usize, usize) {
+        let before = self.session.conversation.messages.len();
+        let result = self.seam_mgr.compress(&mut self.session.conversation.messages);
+        let after = self.session.conversation.messages.len();
+        if result.messages_compressed > 0 {
+            self.record_event(EventKind::MessageSent, serde_json::json!({
+                "action": "compress_context",
+                "messages_compressed": result.messages_compressed,
+                "tokens_saved": result.tokens_saved
+            }));
+        }
+        (before, after)
+    }
+
+    /// Get access to the provider
+    pub fn provider(&self) -> &Arc<dyn ModelProvider> {
+        &self.provider
+    }
+
+    /// Check if loop guard is currently blocking
+    pub fn loop_guard_active(&self) -> bool {
+        self.loop_guard.is_blocked()
+    }
+
     /// Record an event
     fn record_event(&self, kind: EventKind, data: serde_json::Value) {
         if let Some(ref store) = self.event_store {
