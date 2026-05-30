@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quick Start — Orca Agent</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">
+      <span class="gradient">Orca</span>
+      <span class="light">Agent</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Docs</a>
+      <a href="quickstart.html" class="active">Quick Start</a>
+      <a href="providers.html">Providers</a>
+      <a href="tools.html">Tools</a>
+      <a href="architecture.html">Architecture</a>
+      <a href="cli.html">CLI</a>
+      <a href="config.html">Config</a>
+    </div>
+    <div class="nav-right">
+      <span class="nav-version">v0.1.0</span>
+      <a href="https://github.com" class="nav-github">
+        <svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      </a>
+    </div>
+  </nav>
+
+  <div class="nav-mobile-menu">
+    <a href="index.html">Docs</a>
+    <a href="quickstart.html" class="active">Quick Start</a>
+    <a href="providers.html">Providers</a>
+    <a href="tools.html">Tools</a>
+    <a href="architecture.html">Architecture</a>
+    <a href="cli.html">CLI</a>
+    <a href="config.html">Config</a>
+  </div>
+
+  <div class="doc-layout">
+    <aside class="sidebar">
+      <div class="sidebar-heading">On this page</div>
+      <nav class="sidebar-section">
+        <a href="#overview" class="sidebar-link">Overview</a>
+        <a href="#prerequisites" class="sidebar-link">Prerequisites</a>
+        <a href="#build" class="sidebar-link">Build from Source</a>
+        <a href="#api-keys" class="sidebar-link">Set API Keys</a>
+        <a href="#first-run" class="sidebar-link">First Run</a>
+        <a href="#tui" class="sidebar-link">TUI Mode</a>
+        <a href="#next-steps" class="sidebar-link">Next Steps</a>
+      </nav>
+    </aside>
+
+    <main class="doc-content">
+      <!-- Breadcrumb -->
+      <div class="breadcrumb"><span>Docs</span> / Quick Start</div>
+
+      <!-- Page Title -->
+      <h1 class="page-title">Quick Start</h1>
+      <p class="doc-subtitle">Get Orca Agent up and running in 5 minutes. Build from source, configure your provider, and start coding.</p>
+
+      <!-- Overview -->
+      <section id="overview" class="doc-section">
+        <h2>Overview</h2>
+        <p>Orca Agent is a Rust-based AI coding agent with OS-level sandboxing, multi-provider support, and checkpoint recovery. This guide walks you through installation and your first session.</p>
+      </section>
+
+      <!-- Prerequisites -->
+      <section id="prerequisites" class="doc-section">
+        <h2>Prerequisites</h2>
+        <table class="doc-table">
+          <thead>
+            <tr>
+              <th>Requirement</th>
+              <th>Details</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Rust toolchain</td>
+              <td>1.70+ (install via rustup.rs)</td>
+            </tr>
+            <tr>
+              <td>Git</td>
+              <td>For cloning the repository</td>
+            </tr>
+            <tr>
+              <td>API Key</td>
+              <td>At least one provider key (DeepSeek, Anthropic, or OpenAI)</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- Build from Source -->
+      <section id="build" class="doc-section">
+        <h2>Build from Source</h2>
+        <div class="code-block">
+          <div class="dots">
+            <span class="red"></span>
+            <span class="amber"></span>
+            <span class="green"></span>
+          </div>
+          <div class="lines">
+            <div class="line"><span class="prompt">$</span> git clone https://github.com/orca-agent/orca-agent.git</div>
+            <div class="line"><span class="prompt">$</span> cd orca-agent</div>
+            <div class="line"><span class="prompt">$</span> cargo build --release</div>
+          </div>
+        </div>
+        <div class="line"><span class="comment"># Binary at target/release/orca-agent</span></div>
+        <div class="info-box tip">
+          <div class="info-box-title">Tip</div>
+          <div class="info-box-body">For faster development builds, omit --release. The debug binary is larger but compiles significantly faster.</div>
+        </div>
+      </section>
+
+      <!-- Set API Keys -->
+      <section id="api-keys" class="doc-section">
+        <h2>Set API Keys</h2>
+        <div class="code-block">
+          <div class="dots">
+            <span class="red"></span>
+            <span class="amber"></span>
+            <span class="green"></span>
+          </div>
+          <div class="lines">
+            <div class="line"><span class="prompt">$</span> export DEEPSEEK_API_KEY="your-key"</div>
+            <div class="line"><span class="prompt">$</span> export ANTHROPIC_API_KEY="your-key"</div>
+            <div class="line"><span class="prompt">$</span> export OPENAI_API_KEY="your-key"</div>
+          </div>
+        </div>
+        <div class="info-box warning">
+          <div class="info-box-title">Security</div>
+          <div class="info-box-body">Never commit API keys to version control. Use environment variables or a secrets manager.</div>
+        </div>
+      </section>
+
+      <!-- First Run -->
+      <section id="first-run" class="doc-section">
+        <h2>First Run</h2>
+        <div class="code-block">
+          <div class="dots">
+            <span class="red"></span>
+            <span class="amber"></span>
+            <span class="green"></span>
+          </div>
+          <div class="lines">
+            <div class="line"><span class="prompt">$</span> ./target/release/orca chat</div>
+            <div class="line"><span class="output">Orca v0.1.0 - AI Coding Agent</span></div>
+            <div class="line"><span class="output">Model: deepseek-chat (deepseek)</span></div>
+            <div class="line"><span class="output">Type your message, or 'quit' to exit.</span></div>
+            <div class="line"><span class="output"></span></div>
+            <div class="line"><span class="prompt">&gt;</span> explain how this codebase is organized</div>
+          </div>
+        </div>
+        <div class="line"><span class="output">(agent responds with codebase analysis)</span></div>
+      </section>
+
+      <!-- TUI Mode -->
+      <section id="tui" class="doc-section">
+        <h2>TUI Mode</h2>
+        <div class="code-block">
+          <div class="dots">
+            <span class="red"></span>
+            <span class="amber"></span>
+            <span class="green"></span>
+          </div>
+          <div class="lines">
+            <div class="line"><span class="prompt">$</span> ./target/release/orca chat --tui</div>
+          </div>
+        </div>
+        <p>TUI mode provides a rich terminal interface built with ratatui. Navigate with keyboard shortcuts, scroll through conversation history, and monitor tool execution in real-time.</p>
+      </section>
+
+      <!-- Next Steps -->
+      <section id="next-steps" class="doc-section">
+        <h2>Next Steps</h2>
+        <ul>
+          <li><a href="providers.html">Provider Configuration</a> — Set up DeepSeek, Anthropic, OpenAI, or custom providers</li>
+          <li><a href="tools.html">Tools Reference</a> — Learn about the 8 built-in tools</li>
+          <li><a href="architecture.html">Architecture</a> — Understand how Orca works under the hood</li>
+        </ul>
+      </section>
+    </main>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-brand">
+      <span class="gradient">Orca Agent</span>
+      <span> · MIT License</span>
+    </div>
+    <div class="footer-links">
+      <a href="https://github.com">GitHub</a>
+      <a href="index.html">Docs</a>
+      <a href="https://github.com">Releases</a>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
