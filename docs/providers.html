@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Provider Configuration — Orca Agent</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">
+      <span class="gradient">Orca</span>
+      <span class="light">Agent</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Docs</a>
+      <a href="quickstart.html">Quick Start</a>
+      <a href="providers.html" class="active">Providers</a>
+      <a href="tools.html">Tools</a>
+      <a href="architecture.html">Architecture</a>
+      <a href="cli.html">CLI</a>
+      <a href="config.html">Config</a>
+    </div>
+    <div class="nav-right">
+      <span class="nav-version">v0.1.0</span>
+      <a href="https://github.com" class="nav-github">
+        <svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      </a>
+    </div>
+  </nav>
+
+  <div class="nav-mobile-menu">
+    <a href="index.html">Docs</a>
+    <a href="quickstart.html">Quick Start</a>
+    <a href="providers.html" class="active">Providers</a>
+    <a href="tools.html">Tools</a>
+    <a href="architecture.html">Architecture</a>
+    <a href="cli.html">CLI</a>
+    <a href="config.html">Config</a>
+  </div>
+
+  <div class="doc-layout">
+    <aside class="sidebar">
+      <div class="sidebar-heading">On this page</div>
+      <nav class="sidebar-section">
+        <a href="#built-in" class="sidebar-link">Built-in Providers</a>
+        <a href="#deepseek" class="sidebar-link">DeepSeek</a>
+        <a href="#anthropic" class="sidebar-link">Anthropic (Claude)</a>
+        <a href="#openai" class="sidebar-link">OpenAI</a>
+        <a href="#custom" class="sidebar-link">Custom Providers</a>
+        <a href="#config" class="sidebar-link">Configuration</a>
+        <a href="#examples" class="sidebar-link">Examples</a>
+      </nav>
+    </aside>
+
+    <main class="doc-content">
+      <!-- Breadcrumb -->
+      <div class="breadcrumb"><span>Docs</span> / Providers</div>
+
+      <!-- Page Title -->
+      <h1 class="page-title">Provider Configuration</h1>
+      <p class="doc-subtitle">Configure LLM providers for Orca Agent. Supports DeepSeek, Anthropic, OpenAI, and any OpenAI-compatible endpoint.</p>
+
+      <!-- Built-in Providers -->
+      <section id="built-in" class="doc-section">
+        <h2>Built-in Providers</h2>
+        <p>Orca Agent ships with three built-in providers. Each requires an API key set as an environment variable.</p>
+        <table class="doc-table">
+          <thead>
+            <tr>
+              <th>Provider</th>
+              <th>CLI Name</th>
+              <th>Models</th>
+              <th>API Key</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>DeepSeek</td>
+              <td>deepseek</td>
+              <td>deepseek-chat, deepseek-reasoner</td>
+              <td>DEEPSEEK_API_KEY</td>
+            </tr>
+            <tr>
+              <td>Anthropic</td>
+              <td>anthropic / claude</td>
+              <td>claude-sonnet-4-20250514, claude-opus-4-20250514</td>
+              <td>ANTHROPIC_API_KEY</td>
+            </tr>
+            <tr>
+              <td>OpenAI</td>
+              <td>openai</td>
+              <td>gpt-4o, gpt-4o-mini, gpt-4.1, o1, o3, o3-mini</td>
+              <td>OPENAI_API_KEY</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- DeepSeek -->
+      <section id="deepseek" class="doc-section">
+        <h2>DeepSeek</h2>
+        <p>DeepSeek is the default provider, offering excellent performance at low cost.</p>
+        <div class="code-block">
+          <div class="dots">
+            <span class="red"></span>
+            <span class="amber"></span>
+            <span class="green"></span>
+          </div>
+          <div class="lines">
+            <div class="line"><span class="prompt">$</span> orca chat --provider deepseek --model deepseek-chat</div>
+            <div class="line"><span class="prompt">$</span> orca chat --provider deepseek --model deepseek-reasoner</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Anthropic (Claude) -->
+      <section id="anthropic" class="doc-section">
+        <h2>Anthropic (Claude)</h2>
+        <p>Anthropic's Claude models provide strong reasoning and code generation capabilities.</p>
+        <div class="code-block">
+          <div class="dots">
+            <span class="red"></span>
+            <span class="amber"></span>
+            <span class="green"></span>
+          </div>
+          <div class="lines">
+            <div class="line"><span class="prompt">$</span> orca chat --provider anthropic --model claude-sonnet-4-20250514</div>
+            <div class="line"><span class="prompt">$</span> orca chat --provider claude --model claude-opus-4-20250514</div>
+          </div>
+        </div>
+        <div class="info-box tip">
+          <div class="info-box-title">Tip</div>
+          <div class="info-box-body">Both --provider anthropic and --provider claude work interchangeably.</div>
+        </div>
+      </section>
+
+      <!-- OpenAI -->
+      <section id="openai" class="doc-section">
+        <h2>OpenAI</h2>
+        <p>OpenAI's GPT and reasoning models (o1, o3) are fully supported.</p>
+        <div class="code-block">
+          <div class="dots">
+            <span class="red"></span>
+            <span class="amber"></span>
+            <span class="green"></span>
+          </div>
+          <div class="lines">
+            <div class="line"><span class="prompt">$</span> orca chat --provider openai --model gpt-4o</div>
+            <div class="line"><span class="prompt">$</span> orca chat --provider openai --model o3</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Custom Providers -->
+      <section id="custom" class="doc-section">
+        <h2>Custom Providers (OpenAI-Compatible)</h2>
+        <p>Any provider that implements the OpenAI API format is supported via the --base-url flag or config file. This includes Ollama, Groq, Together AI, OpenRouter, Azure OpenAI, vLLM, LiteLLM, and Cloudflare Workers AI.</p>
+        <table class="doc-table">
+          <thead>
+            <tr>
+              <th>Provider</th>
+              <th>Base URL</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Ollama</td>
+              <td>http://localhost:11434/v1</td>
+            </tr>
+            <tr>
+              <td>Groq</td>
+              <td>https://api.groq.com/openai</td>
+            </tr>
+            <tr>
+              <td>Together AI</td>
+              <td>https://api.together.xyz/v1</td>
+            </tr>
+            <tr>
+              <td>OpenRouter</td>
+              <td>https://openrouter.ai/api/v1</td>
+            </tr>
+            <tr>
+              <td>Azure OpenAI</td>
+              <td>https://{resource}.openai.azure.com/openai</td>
+            </tr>
+            <tr>
+              <td>vLLM</td>
+              <td>http://localhost:8000/v1</td>
+            </tr>
+            <tr>
+              <td>LiteLLM</td>
+              <td>http://localhost:4000</td>
+            </tr>
+            <tr>
+              <td>Cloudflare Workers AI</td>
+              <td>https://api.cloudflare.com/client/v4/accounts/{id}/ai</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- Configuration -->
+      <section id="config" class="doc-section">
+        <h2>Configuration</h2>
+        <p>For persistent configuration, add a custom provider to your config.toml file:</p>
+        <div class="code-block">
+          <div class="dots">
+            <span class="red"></span>
+            <span class="amber"></span>
+            <span class="green"></span>
+          </div>
+          <div class="lines">
+            <div class="line"><span class="prompt">provider</span> = "custom"</div>
+            <div class="line"><span class="prompt">model</span> = "your-model-name"</div>
+            <div class="line"><span class="output"></span></div>
+            <div class="line"><span class="prompt">[providers.custom]</span></div>
+            <div class="line"><span class="prompt">api_key</span> = "$YOUR_API_KEY"</div>
+            <div class="line"><span class="prompt">base_url</span> = "https://your-api-endpoint.com"</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Examples -->
+      <section id="examples" class="doc-section">
+        <h2>Examples</h2>
+        <p>Ollama (local):</p>
+        <div class="code-block">
+          <div class="dots">
+            <span class="red"></span>
+            <span class="amber"></span>
+            <span class="green"></span>
+          </div>
+          <div class="lines">
+            <div class="line"><span class="prompt">$</span> orca chat --provider openai --model llama3 --base-url http://localhost:11434/v1</div>
+          </div>
+        </div>
+        <p>Groq:</p>
+        <div class="code-block">
+          <div class="dots">
+            <span class="red"></span>
+            <span class="amber"></span>
+            <span class="green"></span>
+          </div>
+          <div class="lines">
+            <div class="line"><span class="prompt">$</span> orca chat --provider openai --model llama3-70b-8192 --base-url https://api.groq.com/openai</div>
+          </div>
+        </div>
+        <p>OpenRouter:</p>
+        <div class="code-block">
+          <div class="dots">
+            <span class="red"></span>
+            <span class="amber"></span>
+            <span class="green"></span>
+          </div>
+          <div class="lines">
+            <div class="line"><span class="prompt">$</span> orca chat --provider openai --model anthropic/claude-3.5-sonnet --base-url https://openrouter.ai/api/v1</div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-brand">
+      <span class="gradient">Orca Agent</span>
+      <span> · MIT License</span>
+    </div>
+    <div class="footer-links">
+      <a href="https://github.com">GitHub</a>
+      <a href="index.html">Docs</a>
+      <a href="https://github.com">Releases</a>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
