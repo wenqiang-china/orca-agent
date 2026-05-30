@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tools — Orca Agent</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">
+      <span class="gradient">Orca</span>
+      <span class="light">Agent</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Docs</a>
+      <a href="quickstart.html">Quick Start</a>
+      <a href="providers.html">Providers</a>
+      <a href="tools.html" class="active">Tools</a>
+      <a href="architecture.html">Architecture</a>
+      <a href="cli.html">CLI</a>
+      <a href="config.html">Config</a>
+    </div>
+    <div class="nav-right">
+      <span class="nav-version">v0.1.0</span>
+      <a href="https://github.com" class="nav-github">
+        <svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      </a>
+    </div>
+  </nav>
+
+  <div class="nav-mobile-menu">
+    <a href="index.html">Docs</a>
+    <a href="quickstart.html">Quick Start</a>
+    <a href="providers.html">Providers</a>
+    <a href="tools.html" class="active">Tools</a>
+    <a href="architecture.html">Architecture</a>
+    <a href="cli.html">CLI</a>
+    <a href="config.html">Config</a>
+  </div>
+
+  <div class="doc-layout">
+    <aside class="sidebar">
+      <div class="sidebar-heading">On this page</div>
+      <nav class="sidebar-section">
+        <a href="#overview" class="sidebar-link">Overview</a>
+        <a href="#read_file" class="sidebar-link">read_file</a>
+        <a href="#write_file" class="sidebar-link">write_file</a>
+        <a href="#glob" class="sidebar-link">glob</a>
+        <a href="#grep" class="sidebar-link">grep</a>
+        <a href="#execute_shell" class="sidebar-link">execute_shell</a>
+        <a href="#git" class="sidebar-link">git</a>
+        <a href="#web_fetch" class="sidebar-link">web_fetch</a>
+        <a href="#web_search" class="sidebar-link">web_search</a>
+        <a href="#name-resolution" class="sidebar-link">Tool Name Resolution</a>
+        <a href="#arg-repair" class="sidebar-link">Argument Repair</a>
+      </nav>
+    </aside>
+
+    <main class="doc-content">
+      <!-- Breadcrumb -->
+      <div class="breadcrumb"><span>Docs</span> / Tools</div>
+
+      <!-- Page Title -->
+      <h1 class="page-title">Tools</h1>
+      <p class="doc-subtitle">Built-in tool reference for Orca Agent. Filesystem operations, command execution, version control, and web access.</p>
+
+      <!-- Overview -->
+      <section id="overview" class="doc-section">
+        <h2>Overview</h2>
+        <p>Orca Agent includes 8 built-in tools for filesystem operations, command execution, version control, and web access. Tools are sandboxed based on their risk level.</p>
+        <table class="doc-table">
+          <thead>
+            <tr>
+              <th>Tool</th>
+              <th>Description</th>
+              <th>Sandboxed</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>read_file</td>
+              <td>Read file contents</td>
+              <td>No</td>
+            </tr>
+            <tr>
+              <td>write_file</td>
+              <td>Write content to file</td>
+              <td>No</td>
+            </tr>
+            <tr>
+              <td>glob</td>
+              <td>Find files by pattern</td>
+              <td>No</td>
+            </tr>
+            <tr>
+              <td>grep</td>
+              <td>Search file contents by regex</td>
+              <td>No</td>
+            </tr>
+            <tr>
+              <td>execute_shell</td>
+              <td>Execute shell commands</td>
+              <td>Yes</td>
+            </tr>
+            <tr>
+              <td>git</td>
+              <td>Git operations (status, diff, log, add, commit)</td>
+              <td>No</td>
+            </tr>
+            <tr>
+              <td>web_fetch</td>
+              <td>Fetch URL content</td>
+              <td>Yes</td>
+            </tr>
+            <tr>
+              <td>web_search</td>
+              <td>Web search via DuckDuckGo</td>
+              <td>Yes</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- read_file -->
+      <section id="read_file" class="doc-section">
+        <h2>read_file</h2>
+        <p>Read the contents of a file at a given path. Returns the full file content as a string.</p>
+        <div class="code-block">
+          <div class="dots">
+            <span class="red"></span>
+            <span class="amber"></span>
+            <span class="green"></span>
+          </div>
+          <div class="lines">
+            <div class="line">{</div>
+            <div class="line">  "name": "read_file",</div>
+            <div class="line">  "arguments": {</div>
+            <div class="line">    "path": "src/main.rs"</div>
+            <div class="line">  }</div>
+            <div class="line">}</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- write_file -->
+      <section id="write_file" class="doc-section">
+        <h2>write_file</h2>
+        <p>Write content to a file. Creates the file if it doesn't exist, overwrites if it does.</p>
+        <div class="code-block">
+          <div class="dots">
+            <span class="red"></span>
+            <span class="amber"></span>
+            <span class="green"></span>
+          </div>
+          <div class="lines">
+            <div class="line">{</div>
+            <div class="line">  "name": "write_file",</div>
+            <div class="line">  "arguments": {</div>
+            <div class="line">    "path": "src/config.rs",</div>
+            <div class="line">    "content": "pub const VERSION: &amp;str = \"0.1.0\";"</div>
+            <div class="line">  }</div>
+            <div class="line">}</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- glob -->
+      <section id="glob" class="doc-section">
+        <h2>glob</h2>
+        <p>Find files matching a glob pattern. Returns a list of matching file paths.</p>
+        <div class="code-block">
+          <div class="dots">
+            <span class="red"></span>
+            <span class="amber"></span>
+            <span class="green"></span>
+          </div>
+          <div class="lines">
+            <div class="line">{</div>
+            <div class="line">  "name": "glob",</div>
+            <div class="line">  "arguments": {</div>
+            <div class="line">    "pattern": "**/*.rs"</div>
+            <div class="line">  }</div>
+            <div class="line">}</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- grep -->
+      <section id="grep" class="doc-section">
+        <h2>grep</h2>
+        <p>Search file contents using regular expressions. Returns matching lines with file paths and line numbers.</p>
+        <div class="code-block">
+          <div class="dots">
+            <span class="red"></span>
+            <span class="amber"></span>
+            <span class="green"></span>
+          </div>
+          <div class="lines">
+            <div class="line">{</div>
+            <div class="line">  "name": "grep",</div>
+            <div class="line">  "arguments": {</div>
+            <div class="line">    "pattern": "fn\\s+main",</div>
+            <div class="line">    "glob": "*.rs"</div>
+            <div class="line">  }</div>
+            <div class="line">}</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- execute_shell -->
+      <section id="execute_shell" class="doc-section">
+        <h2>execute_shell</h2>
+        <p>Execute a shell command in the working directory. Output is truncated to prevent context overflow.</p>
+        <div class="code-block">
+          <div class="dots">
+            <span class="red"></span>
+            <span class="amber"></span>
+            <span class="green"></span>
+          </div>
+          <div class="lines">
+            <div class="line">{</div>
+            <div class="line">  "name": "execute_shell",</div>
+            <div class="line">  "arguments": {</div>
+            <div class="line">    "command": "cargo test --workspace"</div>
+            <div class="line">  }</div>
+            <div class="line">}</div>
+          </div>
+        </div>
+        <div class="info-box warning">
+          <div class="info-box-title">Sandboxed</div>
+          <div class="info-box-body">Shell commands run with OS-level sandboxing. Execution timeout defaults to 120 seconds (configurable). Dangerous commands are blocked. Network access is denied by default.</div>
+        </div>
+      </section>
+
+      <!-- git -->
+      <section id="git" class="doc-section">
+        <h2>git</h2>
+        <p>Perform git operations. Supports common commands: status, diff, log, add, commit, branch, checkout, and more.</p>
+        <div class="code-block">
+          <div class="dots">
+            <span class="red"></span>
+            <span class="amber"></span>
+            <span class="green"></span>
+          </div>
+          <div class="lines">
+            <div class="line">{</div>
+            <div class="line">  "name": "git",</div>
+            <div class="line">  "arguments": {</div>
+            <div class="line">    "subcommand": "diff",</div>
+            <div class="line">    "args": ["--staged"]</div>
+            <div class="line">  }</div>
+            <div class="line">}</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- web_fetch -->
+      <section id="web_fetch" class="doc-section">
+        <h2>web_fetch</h2>
+        <p>Fetch content from a URL. Returns the response body as text. Useful for reading documentation, API responses, or web pages.</p>
+        <div class="code-block">
+          <div class="dots">
+            <span class="red"></span>
+            <span class="amber"></span>
+            <span class="green"></span>
+          </div>
+          <div class="lines">
+            <div class="line">{</div>
+            <div class="line">  "name": "web_fetch",</div>
+            <div class="line">  "arguments": {</div>
+            <div class="line">    "url": "https://docs.rs/tokio/latest/tokio/"</div>
+            <div class="line">  }</div>
+            <div class="line">}</div>
+          </div>
+        </div>
+        <div class="info-box tip">
+          <div class="info-box-title">Sandboxed</div>
+          <div class="info-box-body">Network requests go through the sandbox. Only HTTP/HTTPS URLs are allowed.</div>
+        </div>
+      </section>
+
+      <!-- web_search -->
+      <section id="web_search" class="doc-section">
+        <h2>web_search</h2>
+        <p>Search the web using DuckDuckGo. Returns a list of search results with titles, URLs, and snippets.</p>
+        <div class="code-block">
+          <div class="dots">
+            <span class="red"></span>
+            <span class="amber"></span>
+            <span class="green"></span>
+          </div>
+          <div class="lines">
+            <div class="line">{</div>
+            <div class="line">  "name": "web_search",</div>
+            <div class="line">  "arguments": {</div>
+            <div class="line">    "query": "rust async runtime comparison"</div>
+            <div class="line">  }</div>
+            <div class="line">}</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Tool Name Resolution -->
+      <section id="name-resolution" class="doc-section">
+        <h2>Tool Name Resolution</h2>
+        <p>When a model outputs an incorrect tool name, Orca uses a 5-step fuzzy matching process to find the intended tool:</p>
+        <ol>
+          <li>Exact match</li>
+          <li>Case-insensitive match (Read_File &rarr; read_file)</li>
+          <li>Hyphen normalization (read-file &rarr; read_file)</li>
+          <li>CamelCase conversion (readFile &rarr; read_file)</li>
+          <li>Prefix fuzzy match (read &rarr; read_file)</li>
+        </ol>
+        <p>Legacy tool call formats are also supported: [TOOL_CALL] prefix, XML &lt;tool&gt; tags, and JSON code blocks.</p>
+      </section>
+
+      <!-- Argument Repair -->
+      <section id="arg-repair" class="doc-section">
+        <h2>Argument Repair</h2>
+        <p>When a model outputs malformed JSON arguments, Orca runs a 6-stage repair pipeline:</p>
+        <ol>
+          <li>Direct parse attempt</li>
+          <li>Control character removal</li>
+          <li>Trailing comma removal</li>
+          <li>Bracket balancing</li>
+          <li>Extra closure stripping</li>
+          <li>Double-encoded JSON detection</li>
+        </ol>
+      </section>
+    </main>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-brand">
+      <span class="gradient">Orca Agent</span>
+      <span> · MIT License</span>
+    </div>
+    <div class="footer-links">
+      <a href="https://github.com">GitHub</a>
+      <a href="index.html">Docs</a>
+      <a href="https://github.com">Releases</a>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
