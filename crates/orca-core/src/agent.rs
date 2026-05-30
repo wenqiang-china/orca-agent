@@ -386,6 +386,34 @@ impl Agent {
         self.session.iteration_count
     }
 
+    /// Get mutable access to the session
+    pub fn session_mut(&mut self) -> &mut Session {
+        &mut self.session
+    }
+
+    /// Clear all conversation messages while preserving session ID
+    pub fn clear_conversation(&mut self) {
+        self.session.conversation.messages.clear();
+        self.record_event(EventKind::MessageSent, serde_json::json!({
+            "action": "clear_conversation"
+        }));
+    }
+
+    /// Get the current system prompt
+    pub fn system_prompt(&self) -> &str {
+        &self.system_prompt
+    }
+
+    /// Update the system prompt
+    pub fn set_system_prompt(&mut self, prompt: String) {
+        let prompt_len = prompt.len();
+        self.system_prompt = prompt;
+        self.record_event(EventKind::MessageSent, serde_json::json!({
+            "action": "set_system_prompt",
+            "prompt_length": prompt_len
+        }));
+    }
+
     /// Record an event
     fn record_event(&self, kind: EventKind, data: serde_json::Value) {
         if let Some(ref store) = self.event_store {
